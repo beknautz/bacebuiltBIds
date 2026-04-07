@@ -1,0 +1,244 @@
+/* ============================================================
+   BaceBuilt BidCore — Admin UI
+   Palette: Charcoal #18160F  ·  Amber Gold #C8941A
+   ============================================================ */
+
+:root {
+  --bb-charcoal:     #18160F;
+  --bb-char-800:     #201e16;
+  --bb-char-700:     #2a2820;
+  --bb-char-600:     #363428;
+  --bb-char-500:     #4a4838;
+  --bb-gold:         #C8941A;
+  --bb-gold-hover:   #d9a420;
+  --bb-gold-muted:   #9a7015;
+  --bb-gold-faint:   rgba(200,148,26,.15);
+  --bb-gold-faint2:  rgba(200,148,26,.08);
+  --bb-text:         #e8e4d8;
+  --bb-text-muted:   #9a9585;
+  --bb-border:       #3a3828;
+  --bs-body-bg:      #18160F;
+  --bs-body-color:   #e8e4d8;
+}
+
+/* ── Base ───────────────────────────────────────────────── */
+html, body {
+  background-color: var(--bb-charcoal);
+  color: var(--bb-text);
+  font-family: Arial, sans-serif;
+  font-size: .9rem;
+}
+
+::-webkit-scrollbar          { width: 7px; height: 7px; }
+::-webkit-scrollbar-track    { background: var(--bb-char-700); }
+::-webkit-scrollbar-thumb    { background: var(--bb-char-500); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--bb-gold-muted); }
+
+/* ── Navbar ─────────────────────────────────────────────── */
+.navbar-bb {
+  background-color: var(--bb-char-700);
+  border-bottom: 2px solid var(--bb-gold);
+  padding: .5rem 1.25rem;
+}
+.navbar-bb .navbar-brand {
+  color: var(--bb-gold);
+  font-family: Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: bold;
+  letter-spacing: .04em;
+}
+.navbar-bb .navbar-brand:hover { color: var(--bb-gold-hover); }
+.navbar-bb .nav-link           { color: var(--bb-text-muted); padding: .75rem 1rem; }
+.navbar-bb .nav-link:hover,
+.navbar-bb .nav-link.active    { color: var(--bb-gold); }
+.navbar-bb .nav-link.active    { border-bottom: 2px solid var(--bb-gold); }
+
+/* ── Cards ──────────────────────────────────────────────── */
+.card-bb {
+  background-color: var(--bb-char-700);
+  border: 1px solid var(--bb-border);
+  border-radius: 5px;
+}
+.card-bb .card-header {
+  background-color: var(--bb-char-600);
+  border-bottom: 1px solid var(--bb-gold-muted);
+  color: var(--bb-gold);
+  font-family: Georgia, serif;
+  font-weight: bold;
+  font-size: .88rem;
+  letter-spacing: .04em;
+  padding: .5rem .9rem;
+}
+.card-bb .card-body { padding: .9rem; }
+
+/* ── Section bar ────────────────────────────────────────── */
+.section-bar {
+  background-color: var(--bb-char-600);
+  border-left: 3px solid var(--bb-gold);
+  color: var(--bb-gold);
+  font-family: Georgia, serif;
+  font-size: .78rem;
+  font-weight: bold;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: .35rem .75rem;
+  margin-bottom: .6rem;
+}
+
+/* ── Buttons ─────────────────────────────────────────────── */
+.btn-gold {
+  background-color: var(--bb-gold);
+  border-color: var(--bb-gold);
+  color: var(--bb-charcoal);
+  font-weight: bold;
+}
+.btn-gold:hover, .btn-gold:focus {
+  background-color: var(--bb-gold-hover);
+  border-color: var(--bb-gold-hover);
+  color: var(--bb-charcoal);
+}
+.btn-outline-gold {
+  background-color: transparent;
+  border-color: var(--bb-gold);
+  color: var(--bb-gold);
+}
+.btn-outline-gold:hover {
+  background-color: var(--bb-gold-faint);
+  color: var(--bb-gold-hover);
+  border-color: var(--bb-gold-hover);
+}
+
+/* ── Form controls ───────────────────────────────────────── */
+.form-control, .form-select {
+  background-color: var(--bb-char-600);
+  border-color: var(--bb-border);
+  color: var(--bb-text);
+}
+.form-control:focus, .form-select:focus {
+  background-color: var(--bb-char-600);
+  border-color: var(--bb-gold-muted);
+  color: var(--bb-text);
+  box-shadow: 0 0 0 .2rem var(--bb-gold-faint);
+}
+.form-control::placeholder         { color: var(--bb-text-muted); opacity: 1; }
+.form-control:disabled,
+.form-select:disabled               { background-color: var(--bb-char-800); opacity: .6; }
+.form-label                         { color: var(--bb-text-muted); font-size: .78rem; margin-bottom: .15rem; }
+.input-group-text                   { background-color: var(--bb-char-500); border-color: var(--bb-border); color: var(--bb-text-muted); }
+textarea.form-control               { resize: vertical; }
+
+/* ── Tables ──────────────────────────────────────────────── */
+.table-bb {
+  color: var(--bb-text);
+  font-size: .84rem;
+  margin-bottom: 0;
+}
+.table-bb thead th {
+  background-color: var(--bb-char-600);
+  border-bottom: 2px solid var(--bb-gold-muted);
+  color: var(--bb-gold);
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  padding: .45rem .6rem;
+  white-space: nowrap;
+}
+.table-bb tbody td {
+  background-color: var(--bb-char-700);
+  border-color: var(--bb-border);
+  padding: .35rem .55rem;
+  vertical-align: middle;
+}
+.table-bb tbody tr:hover td     { background-color: var(--bb-char-600); }
+.table-bb tfoot td {
+  background-color: var(--bb-char-800);
+  border-top: 2px solid var(--bb-gold-muted);
+  color: var(--bb-gold);
+  font-weight: bold;
+}
+
+/* ── Bid list status badges ──────────────────────────────── */
+.badge-draft    { background-color: #5a5850; color: #ccc; }
+.badge-sent     { background-color: #1e4d8c; color: #9dc4f8; }
+.badge-accepted { background-color: #1e5c1e; color: #7dd87d; }
+.badge-declined { background-color: #6e1e1e; color: #f08080; }
+
+.badge-status {
+  display: inline-block;
+  font-size: .7rem;
+  font-weight: bold;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  padding: .22em .55em;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+/* ── Status workflow buttons (bid editor) ────────────────── */
+.workflow-btn { min-width: 110px; }
+
+/* ── Totals panel ────────────────────────────────────────── */
+.totals-panel {
+  background-color: var(--bb-char-800);
+  border: 1px solid var(--bb-border);
+  border-radius: 4px;
+  padding: .85rem 1rem;
+  min-width: 250px;
+}
+.totals-panel .t-row {
+  display: flex;
+  justify-content: space-between;
+  padding: .18rem 0;
+  font-size: .88rem;
+}
+.totals-panel .t-row.grand {
+  border-top: 2px solid var(--bb-gold);
+  margin-top: .4rem;
+  padding-top: .45rem;
+  color: var(--bb-gold);
+  font-family: Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: bold;
+}
+.totals-panel .t-label { color: var(--bb-text-muted); }
+.totals-panel .t-val   { font-weight: bold; }
+
+/* ── Line item table rows ────────────────────────────────── */
+.item-row td                { padding: .22rem .4rem !important; }
+.item-row .form-control,
+.item-row .form-select      { padding: .2rem .4rem; font-size: .82rem; }
+.item-line-total            { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* ── Inline tax-rate input ───────────────────────────────── */
+.tax-input {
+  display: inline-block;
+  width: 55px;
+  padding: .15rem .35rem;
+  font-size: .82rem;
+  text-align: right;
+}
+
+/* ── Misc utilities ──────────────────────────────────────── */
+.text-gold          { color: var(--bb-gold) !important; }
+.border-gold        { border-color: var(--bb-gold) !important; }
+.bg-char-card       { background-color: var(--bb-char-700); }
+hr.gold-rule        { border-color: var(--bb-gold-muted); opacity: 1; }
+.page-title         { font-family: Georgia, serif; color: var(--bb-gold); font-size: 1.4rem; font-weight: bold; }
+.form-hint          { font-size: .75rem; color: var(--bb-text-muted); }
+
+/* ── Alert overrides ─────────────────────────────────────── */
+.alert-success {
+  background-color: rgba(30, 92, 30, .3);
+  border-color: #2a7a2a;
+  color: #7dd87d;
+}
+.alert-danger {
+  background-color: rgba(110, 30, 30, .3);
+  border-color: #7a2a2a;
+  color: #f08080;
+}
+
+/* ── HTMX indicator ──────────────────────────────────────── */
+.htmx-indicator       { opacity: 0; transition: opacity .2s; }
+.htmx-request .htmx-indicator,
+.htmx-request.htmx-indicator { opacity: 1; }
