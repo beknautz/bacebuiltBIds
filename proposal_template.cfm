@@ -1,8 +1,5 @@
-<cfscript>
-    // Single-quoted strings: # is literal, no interpolation
-    _qtyMask = '0.###';   // up to 3 optional decimal places
-    _taxMask = '0.##';    // up to 2 optional decimal places
-</cfscript>
+<cfset _qtyMask = "0.___"><!--- _ = optional digit, same as # but no CF parsing conflict --->
+<cfset _taxMask = "0.__">
 <!DOCTYPE html>
 <html lang="en">
 <head>
