@@ -1,7 +1,7 @@
 <cfscript>
     navActive  = "bids";
     pageTitle  = "Bids";
-    bidSvc     = new ../components/BidService();
+    bidSvc     = new bbcomponents.BidService();
 
     // Filters from URL
     filterStatus = trim(url.status ?: "");

@@ -4,6 +4,8 @@
     <cfset this.sessionManagement  = true>
     <cfset this.sessionTimeout     = createTimeSpan(0, 4, 0, 0)>
     <cfset this.applicationTimeout = createTimeSpan(1, 0, 0, 0)>
+    <!--- Map /bbcomponents so `new bbcomponents.BidService()` resolves from any subdirectory --->
+    <cfset this.mappings["/bbcomponents"] = getDirectoryFromPath(getCurrentTemplatePath()) & "components">
 
     <cffunction name="onApplicationStart" returntype="void">
         <!--- Company profile — update to match your letterhead --->

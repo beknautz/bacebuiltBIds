@@ -1,6 +1,6 @@
 <cfscript>
     navActive  = "clients";
-    clientSvc  = new ../components/ClientService();
+    clientSvc  = new bbcomponents.ClientService();
 
     clientId  = val(url.client_id ?: 0);
     isNew     = (clientId EQ 0);

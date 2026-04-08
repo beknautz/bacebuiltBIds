@@ -1,5 +1,5 @@
 <cfscript>
-    bidSvc = new ../../components/BidService();
+    bidSvc = new bbcomponents.BidService();
     bidId  = val(form.bid_id ?: 0);
     newSt  = trim(form.new_status ?: "");
 

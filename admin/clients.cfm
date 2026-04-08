@@ -1,7 +1,7 @@
 <cfscript>
     navActive  = "clients";
     pageTitle  = "Clients";
-    clientSvc  = new ../components/ClientService();
+    clientSvc  = new bbcomponents.ClientService();
 
     deleted = val(url.deleted ?: 0);
     search  = trim(url.search ?: "");

@@ -2,7 +2,7 @@
     bidId = val(url.bid_id ?: 0);
     if (NOT bidId) { location(url="admin/bids.cfm", addtoken=false); }
 
-    bidSvc  = new components/BidService();
+    bidSvc  = new bbcomponents.BidService();
     data    = bidSvc.getById(bidId);
 
     if (structIsEmpty(data)) { location(url="admin/bids.cfm", addtoken=false); }

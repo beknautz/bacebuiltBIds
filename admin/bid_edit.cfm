@@ -1,7 +1,7 @@
 <cfscript>
     navActive  = "bids";
-    bidSvc     = new ../components/BidService();
-    clientSvc  = new ../components/ClientService();
+    bidSvc     = new bbcomponents.BidService();
+    clientSvc  = new bbcomponents.ClientService();
 
     bidId = val(url.bid_id ?: 0);
     saved = val(url.saved  ?: 0);
