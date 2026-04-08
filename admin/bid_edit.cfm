@@ -373,7 +373,7 @@
           <span class="t-label d-flex align-items-center gap-1">
             Tax
             <input type="number" id="tax_rate" name="tax_rate" class="form-control tax-input"
-                   value="#numberFormat(fld(bid,'tax_rate',0),'0.##')#"
+                   value="#val(fld(bid,'tax_rate',0))#"
                    step="0.01" min="0" max="100" oninput="calcTotals()">
             %
           </span>

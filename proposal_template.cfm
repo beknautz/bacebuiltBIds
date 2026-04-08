@@ -1,3 +1,8 @@
+<cfscript>
+    // Format masks set here so ## escaping inside cfoutput is never needed
+    _qtyMask = "0." & "###";   // up to 3 optional decimal places
+    _taxMask = "0." & "##";    // up to 2 optional decimal places
+</cfscript>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -413,7 +418,7 @@
           <tr<cfif lineItems.currentRow mod 2 eq 0> class="row-alt"</cfif>>
             <td style="color:##777;font-size:8.5pt;">#encodeForHtml(lineItems.category)#</td>
             <td>#encodeForHtml(lineItems.description)#</td>
-            <td class="td-num">#numberFormat(lineItems.quantity,'0.###')#</td>
+            <td class="td-num">#numberFormat(lineItems.quantity, _qtyMask)#</td>
             <td style="color:##777;">#encodeForHtml(lineItems.unit)#</td>
             <td class="td-num">#dollarFormat(lineItems.unit_price)#</td>
             <td class="td-num">#dollarFormat(lineItems.line_total)#</td>
@@ -428,7 +433,7 @@
         <cfif val(bid.tax_rate[1]) GT 0>
           <tr class="totals-row">
             <td colspan="5" style="text-align:right;color:##555;">
-              Tax (#numberFormat(bid.tax_rate[1],'0.##')#%)
+              Tax (#numberFormat(bid.tax_rate[1], _taxMask)#%)
             </td>
             <td class="td-num">#dollarFormat(bid.tax_amount[1])#</td>
           </tr>
@@ -494,7 +499,7 @@
             <td style="font-weight:bold;">#encodeForHtml(paymentSchedule.milestone_name)#</td>
             <td class="td-num">#dollarFormat(paymentSchedule.amount)#</td>
             <td class="td-num">
-              <cfif val(paymentSchedule.percent) GT 0>#numberFormat(paymentSchedule.percent,'0.#')#%</cfif>
+              <cfif val(paymentSchedule.percent) GT 0>#numberFormat(paymentSchedule.percent, _taxMask)#%</cfif>
             </td>
             <td style="color:##444;">#encodeForHtml(paymentSchedule.due_description)#</td>
           </tr>
