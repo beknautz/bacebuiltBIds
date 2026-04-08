@@ -56,7 +56,7 @@
     <table class="table table-bb mb-0">
       <thead>
         <tr>
-          <th>Bid #</th>
+          <th>Bid ##</th>
           <th>Client</th>
           <th>Title</th>
           <th>Date</th>

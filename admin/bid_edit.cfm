@@ -8,31 +8,39 @@
     isNew = (bidId EQ 0);
     saveError = "";
 
+    // ── Page-level helpers (var is only valid INSIDE functions) ──
+    // Multi-value form field → CF array via Java servlet request
+    function getParams(name) {
+        var v = getPageContext().getRequest().getParameterValues(name);
+        return (isNull(v) ? [] : listToArray(arrayToList(v)));
+    }
+
+    // Safe query-field read with a default
+    function fld(q, col, def="") {
+        try {
+            var v = q[col][1];
+            return (isNull(v) ? def : v);
+        } catch(any e) { return def; }
+    }
+
     // ── Handle POST ───────────────────────────────────────
     if (cgi.REQUEST_METHOD EQ "POST") {
 
-        // Pull repeated-name fields as proper arrays via Java
-        var req = getPageContext().getRequest();
-        function getParams(name) {
-            var v = req.getParameterValues(name);
-            return (isNull(v) ? [] : listToArray(arrayToList(v)));
-        }
-
-        var data = {
-            bid_id:           val(form.bid_id        ?: 0),
-            client_id:        val(form.client_id      ?: 0),
-            bid_title:        trim(form.bid_title     ?: ""),
-            project_address:  trim(form.project_address ?: ""),
-            project_city:     trim(form.project_city  ?: ""),
-            project_state:    trim(form.project_state ?: ""),
-            project_zip:      trim(form.project_zip   ?: ""),
-            bid_date:         trim(form.bid_date      ?: dateFormat(now(),"yyyy-mm-dd")),
-            valid_until:      trim(form.valid_until   ?: ""),
-            status:           trim(form.status        ?: "Draft"),
-            scope_notes:      trim(form.scope_notes   ?: ""),
-            terms:            trim(form.terms         ?: ""),
-            internal_notes:   trim(form.internal_notes ?: ""),
-            tax_rate:         val(form.tax_rate        ?: 0),
+        data = {
+            bid_id:           val(form.bid_id           ?: 0),
+            client_id:        val(form.client_id         ?: 0),
+            bid_title:        trim(form.bid_title        ?: ""),
+            project_address:  trim(form.project_address  ?: ""),
+            project_city:     trim(form.project_city     ?: ""),
+            project_state:    trim(form.project_state    ?: ""),
+            project_zip:      trim(form.project_zip      ?: ""),
+            bid_date:         trim(form.bid_date         ?: dateFormat(now(),"yyyy-mm-dd")),
+            valid_until:      trim(form.valid_until      ?: ""),
+            status:           trim(form.status           ?: "Draft"),
+            scope_notes:      trim(form.scope_notes      ?: ""),
+            terms:            trim(form.terms            ?: ""),
+            internal_notes:   trim(form.internal_notes   ?: ""),
+            tax_rate:         val(form.tax_rate           ?: 0),
             item_id:          getParams("item_id"),
             item_category:    getParams("item_category"),
             item_description: getParams("item_description"),
@@ -53,7 +61,7 @@
         };
 
         try {
-            var savedId = bidSvc.saveBid(data);
+            savedId = bidSvc.saveBid(data);
             location(url="bid_edit.cfm?bid_id=#savedId#&saved=1", addtoken=false);
         } catch (any e) {
             saveError = e.message;
@@ -61,27 +69,19 @@
     }
 
     // ── Load bid data ──────────────────────────────────────
-    var bidData = (bidId GT 0) ? bidSvc.getById(bidId) : {};
+    bidData = (bidId GT 0) ? bidSvc.getById(bidId) : {};
     if (NOT structIsEmpty(bidData) AND NOT bidData.bid.recordCount) {
         location(url="bids.cfm", addtoken=false);
     }
 
-    var bid             = bidData.bid             ?: queryNew("");
-    var lineItems       = bidData.lineItems       ?: queryNew("");
-    var scopeItems      = bidData.scopeItems      ?: queryNew("");
-    var timelinePhases  = bidData.timelinePhases  ?: queryNew("");
-    var paymentSchedule = bidData.paymentSchedule ?: queryNew("");
+    bid             = bidData.bid             ?: queryNew("");
+    lineItems       = bidData.lineItems       ?: queryNew("");
+    scopeItems      = bidData.scopeItems      ?: queryNew("");
+    timelinePhases  = bidData.timelinePhases  ?: queryNew("");
+    paymentSchedule = bidData.paymentSchedule ?: queryNew("");
 
-    var clients   = clientSvc.getAll(true);
-    var pageTitle = isNew ? "New Bid" : "Edit Bid";
-
-    // Safe field read helper
-    function fld(q, col, def="") {
-        try {
-            var v = q[col][1];
-            return (isNull(v) ? def : v);
-        } catch(any e) { return def; }
-    }
+    clients   = clientSvc.getAll(true);
+    pageTitle = isNew ? "New Bid" : "Edit Bid";
 </cfscript>
 <cfinclude template="_header.cfm">
 <cfoutput>
@@ -140,7 +140,7 @@
       <div class="card-body">
         <div class="row g-2">
           <div class="col-md-4">
-            <label class="form-label">Bid #</label>
+            <label class="form-label">Bid ##</label>
             <input type="text" class="form-control" value="#encodeForHtml(fld(bid,'bid_number','Auto-generated'))#" disabled>
           </div>
           <div class="col-md-8">
