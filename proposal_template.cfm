@@ -1,7 +1,7 @@
 <cfscript>
-    // Format masks set here so ## escaping inside cfoutput is never needed
-    _qtyMask = "0." & "###";   // up to 3 optional decimal places
-    _taxMask = "0." & "##";    // up to 2 optional decimal places
+    // Single-quoted strings: # is literal, no interpolation
+    _qtyMask = '0.###';   // up to 3 optional decimal places
+    _taxMask = '0.##';    // up to 2 optional decimal places
 </cfscript>
 <!DOCTYPE html>
 <html lang="en">
