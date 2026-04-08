@@ -10,7 +10,7 @@
 
     // ── Handle POST ───────────────────────────────────────
     if (cgi.REQUEST_METHOD EQ "POST") {
-        var data = {
+        data = {
             client_id:    val(form.client_id    ?: 0),
             company_name: trim(form.company_name ?: ""),
             contact_name: trim(form.contact_name ?: ""),
@@ -27,7 +27,7 @@
             saveError = "Company name is required.";
         } else {
             try {
-                var savedId = clientSvc.save(data);
+                savedId = clientSvc.save(data);
                 location(url="client_edit.cfm?client_id=#savedId#&saved=1", addtoken=false);
             } catch (any e) {
                 saveError = e.message;
@@ -36,7 +36,7 @@
     }
 
     // ── Load client ───────────────────────────────────────
-    var client = isNew ? queryNew("") : clientSvc.getById(clientId);
+    client = isNew ? queryNew("") : clientSvc.getById(clientId);
 
     function fld(q, col, def="") {
         try {
