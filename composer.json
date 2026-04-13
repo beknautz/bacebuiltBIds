@@ -1,0 +1,11 @@
+{
+    "name": "bacebuilt/bidcore",
+    "description": "BaceBuilt BidCore — PHP bid proposal CMS",
+    "require": {
+        "php": ">=8.1",
+        "mpdf/mpdf": "^8.2"
+    },
+    "config": {
+        "optimize-autoloader": true
+    }
+}
